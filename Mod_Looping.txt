@@ -1,0 +1,67 @@
+'Declarar las variables
+Dim MyCounter As Integer
+
+Sub HacerLoop ()
+
+'Selecciona el comienzo del rango
+Range("A1").Select
+
+Do While ActiveCell.Value < 38
+
+    ActiveCell.Interior.Color = 5287936
+
+    ActiveCell.Offset(2, 0).Select
+
+Loop
+
+End Sub
+
+Sub LoopAlSiguiente ()
+
+'Selecciona el comienzo del rango
+Range("A1").Select
+
+For MyCounter = 1 To 10
+
+    ActiveCell.Offset(0, 1).Value = ActiveCell.Value
+
+    ActiveCell.Offset(3, 0).Select
+
+Next
+
+End Sub
+
+
+Sub LoopAlSiguientePaso ()
+
+'Selecciona el comienzo del rango
+Range("A1").Select
+
+For MyCounter = 1 To 10 Step 2
+
+    ActiveCell.Offset(1, 0).Select
+
+Next
+
+End Sub
+
+
+Sub LoopMientrasAvanza ()
+
+'Selecciona el comienzo del rango
+Range("A1").Select
+
+While ActiveCell.Value < 5
+
+    ActiveCell.Interior.Color = vbRed
+    ActiveCell.Offset(1, 0).Select
+
+Wend
+
+
+End Sub
+
+
+
+
+
