@@ -1,0 +1,38 @@
+'Demo #1 - Una simple variable a "Nivel Local"
+
+'Esta es una variable declarada a nivel "local"
+'Las variables declaradas localmente se declaran dentro de una Sub (aveces se llaman procedimientos)
+'Declaración: Dim
+'Alcance: Solo está disponible en la SUB en la que es declarada
+'Duración: Se destruye al llegar a End Sub (o la declaración "End")
+
+Sub Sub1()
+
+    'variable declarada a nivel local (ya que está declarada dentro de una subrutina)
+    Dim strMyString As String
+    
+    'Selecciona la hoja Sh1Local (nombre vb)
+    Sh1Local.Select
+    'Selecciona A1
+    Range("A1").Select
+    
+    'Limpia la columna C
+    Range("C:C").ClearContents
+        
+    'Lee el valor de un rango específico
+    strMyString = Range("A1").Value
+    
+    'Escribe el valor de la variable en el rango especificado
+    Range("C1").Value = strMyString
+
+    'Llama a la subrutina Sub2
+    Sub2
+        
+End Sub
+
+Sub Sub2()
+
+    'Escribe el valor de la variable en el rango especificado
+    Range("C3").Value = strMyString
+
+End Sub
