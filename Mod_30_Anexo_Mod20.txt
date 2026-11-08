@@ -1,0 +1,9 @@
+'Llamado desde Mod_30_NivelModulo
+
+Sub Sub3()
+
+    ''Escribe el valor de la variable en el rango especificado
+    Range("C5").Value = strMyString2
+
+End Sub
+

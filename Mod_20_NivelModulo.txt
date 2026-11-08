@@ -1,0 +1,46 @@
+'Demo #3 - Una variable simple a "Nivel del Módulo"
+
+'Las variables a nivel del módulo son declaradas en el "Area General de Declaraciones" (ANTES de la primera Sub en el módulo)
+'Puede ser usada por todas las Subs del módulo
+'Declaración: Dim
+'Alcance: Solo disponible en el MÓDULO en el cual fue declarada
+'Duración: Es retenida en la memoria hasta que:
+'           Se cierra el libro
+'           Se presiona "Stop" en el panel VBA
+'           Se agregue una nueva Sub al módulo
+'           Se llega a la declaración "End"
+
+'Declaración de la variable a Nivel del Módulo (declarada ANTES de la primera Subrutina)
+Dim strMyString2 As String
+
+Sub Sub1()
+    
+    'Selecciona la hoja Sh2Modulo (nombre vb)
+    Sh2Modulo.Select
+    'Selecciona A1
+    Range("A1").Select
+    
+    'Limpia el contenido de la columna C
+    Range("C:C").ClearContents
+        
+    'Lee el valor del rango específico
+    strMyString2 = Range("A1").Value
+    
+    'Escribe el valor de la variable en el rango especificado
+    Range("C1").Value = strMyString2
+
+    'Llama a la Subrutina Sub2
+    Sub2
+
+    'Llama a la Subrutina Sub3
+    Sub3
+
+End Sub
+
+Sub Sub2()
+
+    'Escribe el valor de la variable en el rango especificado
+    Range("C3").Value = strMyString2
+
+End Sub
+
