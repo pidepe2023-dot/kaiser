@@ -1,0 +1,354 @@
+'Este módulo proporciona los métodos de pruebas lógicas más comunes
+Dim X As Integer                'Un simple contador usado para los loops (disponible para todas las Subs de este módulo)
+Dim MiUltimaFila As Integer     'Trae el número de la última fila para el loop For...Next
+
+
+'Prueba lógica usando un If simple
+
+
+Sub Logica1A()
+'Prueba lógica simple usando un If solo y el objeto Range
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+    'Mientras que la celda activa no esté vacía...
+    While ActiveCell.Value <> ""
+        
+        'La prueba lógica...
+        'SI el valor de la celda activa es "Masculino", va a escribir "Es Hombre" en la columna G
+        If ActiveCell.Value = "Masculino" Then ActiveCell.Offset(0, 5).Value = "Es Hombre"
+        'Se desplaza una celda hacia abajo
+        ActiveCell.Offset(1, 0).Select
+    
+    'Fin del loop
+    Wend
+
+End Sub
+
+
+Sub Logica1B()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica1A() aquí, y cambiarlo para que muestre el mensaje si no es Masculino
+'¡No vale cambiar Masculino a Femenino!
+
+End Sub
+
+
+Sub Logica1C()
+'Prueba lógica simple isando un IF simple y el objeto Cells
+    
+     'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Cells(2, 2).Select
+    
+    'Hace un Loop de 50 iteraciones
+    For X = 1 To 50
+    
+        'La prueba lógica...
+        'SI el valor de la celda (X+1, columna B) is "Masculino", entonces escribe "Es Hombre" en la columna G
+        If Cells(X + 1, 2) = "Masculino" Then Cells(X + 1, 7).Value = "Es Hombre"
+        'Observa que no necesitamos hacer offset, ya que el valor de "X" en Cells se incrementa cada vez que pasamos por el loop
+        
+    'Fin del loop
+    Next
+
+End Sub
+
+
+
+'Pruebas Lógicas usando If/Then/Else (Si/Entonces/Si no)
+
+
+Sub Logica2A()
+'Prueba simple usando If/Then/Else y el objeto Rango
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+     'Mientras que la celda activa no esté vacía...
+     Do While ActiveCell.Value <> ""
+        
+        'La prueba lógica...
+        'SI el valor de la celda activa es "Masculino"...
+        If ActiveCell.Value = "Masculino" Then
+            
+            '...entonces escribe "Es Hombre" en la columna G
+            ActiveCell.Offset(0, 5).Value = "Es Hombre"
+            
+        'Si no...
+        Else
+        
+            '...entonces escribe "Es Mujer" en la columna G
+            ActiveCell.Offset(0, 5).Value = "Es Mujer"
+     
+        'Fin de la prueba lógica
+        End If
+    
+    'Se desplaza una celda hacia abajo
+    ActiveCell.Offset(1, 0).Select
+    
+    'Fin del loop
+    Loop
+
+End Sub
+
+Sub Logica2B()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica2A() aquí, y cambiarlo para ver si la persona es de una edad determinada
+'Cambia los textos de las respuestas para adaptarlos
+
+End Sub
+
+
+
+Sub Logica2C()
+'Pruebas Lógicas usando If/Then/Else y el objeto Cells
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+    'Obtiene el número de la última fila
+    MiUltimaFila = Range("B100000").End(xlUp).Row - 1
+    
+    'Asigna a X valores desde 1 hasta el de la última fila
+    For X = 1 To MiUltimaFila
+        
+        'La prueba lógica...
+        'SI el valor de la celda (X+1, columna B) es "Masculino"...
+        If Cells(X + 1, 2) = "Masculino" Then
+            '...entonces escribe "Es Hombre" en la columna G
+            Cells(X + 1, 7).Value = "Es Hombre"
+        
+        'Si no...
+        Else
+            '...entonces escribe "Es Mujer" en la columna G
+            Cells(X + 1, 7).Value = "Es Mujer"
+        
+        'Fin de la prueba lógica
+        End If
+    
+    'Fin del loop
+    Next
+
+End Sub
+
+
+'Pruebas lógicas donde se comprueba más de un criterio
+
+
+Sub Logica3A()
+'Prueba lógica comprobando si 2 criterios son verdaderos
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+    'Mientras que la celda activa no esté vacía...
+    Do While ActiveCell.Value <> ""
+        
+        'La prueba lógica...
+        'SI el valor de la celda activa es "Masculino" Y la columna E = "Marrón"...
+        If ActiveCell.Value = "Masculino" And ActiveCell.Offset(0, 3).Value = "Marrón" Then
+            
+            '...entonces escribe "Es un hombre de pelo marrón" en la columna G
+            ActiveCell.Offset(0, 5).Value = "Es un hombre de pelo marrón"
+            'Desplazar una celda hacia abajo
+            ActiveCell.Offset(1, 0).Select
+            
+        'Si no...
+        Else
+        
+            'Desplazar una celda hacia abajo
+            ActiveCell.Offset(1, 0).Select
+            
+        'Fin de la prueba lógica
+        End If
+    
+    'Fin del loop
+    Loop
+
+End Sub
+
+Sub Logica3B()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica3A() aquí, y cambiarlo usando Cells en vez de Range
+'Observa los ejemplos anteriores y detecta qué elementos cambian
+
+End Sub
+
+Sub Logica3C()
+'Prueba lógica comprobando si un criterio es verdadero y otro es falso
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+    'Mientras que la celda activa no esté vacía...
+    Do While ActiveCell.Value <> ""
+        
+        'La prueba lógica...
+        'SI el valor de la celda activa es "Masculino" Y la columna E no es igual a "Marrón"...
+        If ActiveCell.Value = "Masculino" And ActiveCell.Offset(0, 3).Value <> "Marrón" Then
+            
+            '...entonces escribe "Es hombre y su pelo NO es marrón" en la columna G
+            ActiveCell.Offset(0, 5).Value = "Es hombre y su pelo NO es marrón"
+        
+        'Fin de la prueba lógica
+        End If
+    
+    'Desplaza una celda hacia abajo
+    ActiveCell.Offset(1, 0).Select
+    
+    'Fin del loop
+    Loop
+
+End Sub
+
+Sub Logica3D()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica3C() aquí, y cambiarlo usando Cells en vez de Range
+'Observa los ejemplos anteriores y detecta qué elementos cambian
+
+End Sub
+
+
+Sub Logica3E()
+'Pruebalógica comprobando si ALGUNO de los criterios es verdadero
+    
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango (la columna B contiene el Género)
+    Range("B2").Select
+    
+    'Mientras que la celda activa no esté vacía...
+    Do While ActiveCell.Value <> ""
+        
+        'La prueba lógica...
+        'SI el valor de la celda activa es "Masculino" O si la columna E = "Marrón"...
+        If ActiveCell.Value = "Masculino" Or ActiveCell.Offset(0, 3).Value = "Marrón" Then
+            
+            '...entonces escribe "Esta persona puede ser hombre o tener pelo marrón... o ambas" en la columna G
+            ActiveCell.Offset(0, 5).Value = "Esta persona puede ser hombre o tener pelo marrón...o ambas"
+
+        'Fin de la prueba lógica
+        End If
+        
+        'Desplaza una celda hacia abajo
+        ActiveCell.Offset(1, 0).Select
+
+    'Fin del loop
+    Loop
+
+End Sub
+
+Sub Logica3F()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica3E() aquí, y cambiarlo usando Cells en vez de Range
+'Observa los ejemplos anteriores y detecta qué elementos cambian
+
+End Sub
+
+
+'Prueba lógica seleccionando el CASO
+
+
+Sub Logica4A()
+'Prueba lógica Seleccionando un CASO y usando el objeto Range
+    
+    'Declara una variable local
+    Dim MiEdad As Integer
+
+    'Selecciona la hoja correcta (por el nombre vb)
+    Hoja1.Select
+    
+    'Limpia datos anteriores de columna G
+    Range("G:G").ClearContents
+    
+    'Selecciona el comienzo del rango
+    Range("A2").Select
+    
+    'Obtiene el número de la última fila
+    MiUltimaFila = Range("B100000").End(xlUp).Row - 1
+    
+    'Asigna a X valores desde 1 hasta el de la última fila
+    For X = 1 To MiUltimaFila
+        
+        'Obtener el valor de la columna D (se desplaza 3 columnas desde A)
+        MiEdad = ActiveCell.Offset(0, 3).Value
+        
+        'Comenzar la selección de casos
+        Select Case MiEdad
+        
+            Case Is < 20
+                ActiveCell.Offset(0, 6).Value = "Adolescente"
+            Case Is < 30
+                ActiveCell.Offset(0, 6).Value = "Veinteañero"
+            Case Is < 40
+                ActiveCell.Offset(0, 6).Value = "Treintañero"
+            Case Is < 50
+                ActiveCell.Offset(0, 6).Value = "En los mejores años"
+            Case Is >= 50
+                ActiveCell.Offset(0, 6).Value = "Sin comentarios"
+        
+        'Finaliza la selección de casos
+        End Select
+  
+        'Desplaza una celda hacia abajo
+        ActiveCell.Offset(1, 0).Select
+  
+    'Fin del loop
+    Next
+
+End Sub
+
+Sub Logica4B()
+
+'*************************************** Proyecto de programación
+'Copiar y pegar Sub Logica4A() aquí, y cambiarlo usando Cells en vez de Range
+'Observa los ejemplos anteriores y detecta qué elementos cambian
+
+End Sub
+
