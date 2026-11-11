@@ -1,0 +1,41 @@
+'Demo #4 - Variable a Nivel del Proyecto, declarada usando "Public"
+
+'Las variables a nivel de proyecto se declaran en el "Area General de Declaraciones" (ANTES de la primera Sub en el módulo)
+'Pueden usarse en todas las Subs del proyecto actual
+'Declaración: Public
+'Alcance: Disponibles para todas las subrutinas en el proyecto
+'Duración: Se destruyen al llegar a End Sub EN EL MÓDULO EN QUE FUE CREADA
+
+'Declaración de una variable a Nivel Proyecto (declarada ANTES de la primera Subrutina)
+Public strMystring3 As String
+
+Sub SubA()
+    
+    'Selecciona la hoja Sh3Proc (nombre vb)
+    Sh3Proc.Select
+    'Selecciona A1
+    Range("A1").Select
+    
+    'Limpia la columna C
+    Range("C:C").ClearContents
+        
+    'Lee el valor del rango especificado
+    strMystring3 = Range("A1").Value
+    
+    'Escribe el valor de la variable en el rango especificado
+    Range("C1").Value = strMystring3
+
+    'Llama a la Subrutina SubB
+    SubB
+
+    'Llama a la Subrutina SubC
+    SubC
+
+End Sub
+
+Sub SubB()
+
+    'Escribe el valor de la variable en el rango especificado
+    Range("C3").Value = strMystring3
+
+End Sub
